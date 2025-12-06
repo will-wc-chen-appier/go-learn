@@ -1,0 +1,12 @@
+name: go-database-access
+
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=mysql-password
+    ports:
+      - 3306:3306
+    volumes:
+      - ./docker/mysql-go-learning:/var/lib/mysql
+    shm_size: '2gb'
