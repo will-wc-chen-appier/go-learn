@@ -5,5 +5,6 @@ func main() {
 	//forTest()
 	// switchTest()
 	//arrayTest()
-	sliceTest()
+	// sliceTest()
+	mapTest()
 }
