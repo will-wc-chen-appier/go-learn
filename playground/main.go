@@ -9,5 +9,6 @@ func main() {
 	// mapTest()
 	// variadicTest()
 	// closureTest()
-	recursionTest()
+	// recursionTest()
+	stringTest()
 }
