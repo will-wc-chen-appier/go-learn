@@ -12,5 +12,6 @@ func main() {
 	// recursionTest()
 	// stringTest()
 	// pointerTest()
-	structTest()
+	// structTest()
+	methodTest()
 }
