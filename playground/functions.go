@@ -1,0 +1,34 @@
+package main
+
+import "fmt"
+
+func sum(nums ...int) int {
+	var total int
+	fmt.Printf("Type: %T\n", nums)
+	for _, num := range nums {
+		total += num
+	}
+
+	return total
+}
+
+func iter(values ...any) {
+	for _, v := range values {
+		switch x := v.(type) {
+		case int:
+			fmt.Println("int:", x)
+		case string:
+			fmt.Println("string:", x)
+		case bool:
+			fmt.Println("boolean:", x)
+		default:
+			fmt.Println("unknown type")
+		}
+	}
+}
+
+func variadicTest() {
+	// total := sum(1, 2)
+	// fmt.Println("total: ", total)
+	iter(1, "will", 3, "four", true, [2]int{4, 5})
+}

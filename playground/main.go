@@ -6,5 +6,6 @@ func main() {
 	// switchTest()
 	//arrayTest()
 	// sliceTest()
-	mapTest()
+	// mapTest()
+	variadicTest()
 }
