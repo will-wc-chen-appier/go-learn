@@ -50,3 +50,14 @@ func closureTest() {
 	nextInts := intSeq()
 	fmt.Println(nextInts())
 }
+
+func fib(num int) int {
+	if num <= 1 {
+		return num
+	}
+	return fib(num-1) + fib(num-2)
+}
+
+func recursionTest() {
+	fmt.Println(fib(3))
+}

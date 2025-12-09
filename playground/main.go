@@ -8,5 +8,6 @@ func main() {
 	// sliceTest()
 	// mapTest()
 	// variadicTest()
-	closureTest()
+	// closureTest()
+	recursionTest()
 }
