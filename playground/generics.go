@@ -40,3 +40,14 @@ func genericTest() {
 	lst.Push(23)
 	fmt.Println("list:", lst.AllElements())
 }
+
+// SlicesIndex takes a slice of any comparable type and an element of that type
+// returns the index of the first occurrence of v in s, or -1 if not present.
+func SlicesIndex[S ~[]E, E comparable](s S, v E) int {
+	for i := range s {
+		if v == s[i] {
+			return i
+		}
+	}
+	return -1
+}
