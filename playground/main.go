@@ -7,5 +7,5 @@ func main() {
 	//arrayTest()
 	// sliceTest()
 	// mapTest()
-	variadicTest()
+	// variadicTest()
 }
