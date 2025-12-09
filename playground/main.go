@@ -10,6 +10,6 @@ func main() {
 	// variadicTest()
 	// closureTest()
 	// recursionTest()
-	// stringTest()
-	pointerTest()
+	stringTest()
+	// pointerTest()
 }
