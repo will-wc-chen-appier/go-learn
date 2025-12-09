@@ -76,3 +76,67 @@ func methodTest() {
 	// fmt.Println("area: ", rp.area())
 	// fmt.Println("perim:", rp.perim())
 }
+
+type base struct {
+	num int
+}
+
+func (b *base) describe() string {
+	return fmt.Sprintf("base with num=%v", b.num)
+}
+
+type container struct {
+	base //embedded
+	str  string
+}
+
+type container2 struct {
+	base base // not embedded
+	str  string
+}
+
+type base2 struct {
+	num int
+}
+
+func (b base2) describe() string {
+	return fmt.Sprintf("base with num=%v", b.num)
+}
+
+type container3 struct {
+	base2
+	str string
+}
+
+func embedTest() {
+	co := container{
+		base: base{num: 42},
+		str:  "hello",
+	}
+	fmt.Println(co.describe())
+	fmt.Println("also num:", co.base.num)
+	fmt.Println(co.base.describe())
+	fmt.Println((&co).describe())
+	fmt.Println((&co.base).describe())
+	fmt.Println((&(co.base)).num)
+
+	co3 := container3{
+		base2: base2{num: 100},
+		str:   "hello2",
+	}
+	fmt.Println(co3.describe())
+	fmt.Println("also num:", co3.base2.num)
+	fmt.Println(co3.base2.describe())
+
+	type describer interface {
+		describe() string
+	}
+
+	// var d describer = co //can't compile
+	// fmt.Println(d.describe())
+	var d describer = &co
+	fmt.Println(d.describe())
+
+	var d3 describer = co3
+	fmt.Println(d3.describe())
+}

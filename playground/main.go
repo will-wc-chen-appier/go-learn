@@ -15,5 +15,6 @@ func main() {
 	// structTest()
 	// methodTest()
 	// interfaceTest()
-	enumTest()
+	// enumTest()
+	embedTest()
 }
