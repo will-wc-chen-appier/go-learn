@@ -12,7 +12,7 @@ func sum(nums ...int) int {
 	return total
 }
 
-func iter(values ...any) {
+func checkType(values ...any) {
 	for _, v := range values {
 		switch x := v.(type) {
 		case int:
@@ -30,7 +30,7 @@ func iter(values ...any) {
 func variadicTest() {
 	// total := sum(1, 2)
 	// fmt.Println("total: ", total)
-	iter(1, "will", 3, "four", true, [2]int{4, 5})
+	checkType(1, "will", 3, "four", true, [2]int{4, 5})
 }
 
 func intSeq() func() int {

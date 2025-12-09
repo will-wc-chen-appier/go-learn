@@ -17,5 +17,6 @@ func main() {
 	// interfaceTest()
 	// enumTest()
 	// embedTest()
-	genericTest()
+	// genericTest()
+	iterTest()
 }
