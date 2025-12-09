@@ -71,3 +71,26 @@ func interfaceTest() {
 		fmt.Printf("Not the right type.")
 	}
 }
+
+type ServerState int
+
+const (
+	StateIdle ServerState = iota
+	StateConnected
+	StateError
+	StateRetrying
+)
+
+func (ss ServerState) String() string {
+	var stateName = map[ServerState]string{
+		StateIdle:      "idle",
+		StateConnected: "connected",
+		StateError:     "error",
+		StateRetrying:  "retrying",
+	}
+	return stateName[ss]
+}
+
+func enumTest() {
+	fmt.Println(StateIdle)
+}
