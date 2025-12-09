@@ -32,3 +32,21 @@ func variadicTest() {
 	// fmt.Println("total: ", total)
 	iter(1, "will", 3, "four", true, [2]int{4, 5})
 }
+
+func intSeq() func() int {
+	x := 10
+	return func() int {
+		x++
+		return x
+	}
+}
+
+func closureTest() {
+	nextInt := intSeq()
+	fmt.Println(nextInt())
+	fmt.Println(nextInt())
+	fmt.Println(nextInt())
+
+	nextInts := intSeq()
+	fmt.Println(nextInts())
+}
