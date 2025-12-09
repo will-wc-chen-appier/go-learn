@@ -13,5 +13,6 @@ func main() {
 	// stringTest()
 	// pointerTest()
 	// structTest()
-	methodTest()
+	// methodTest()
+	interfaceTest()
 }
