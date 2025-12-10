@@ -18,5 +18,6 @@ func main() {
 	// enumTest()
 	// embedTest()
 	// genericTest()
-	iterTest()
+	// iterTest()
+	errorTest()
 }
