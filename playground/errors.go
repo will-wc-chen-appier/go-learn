@@ -25,26 +25,51 @@ func makeTea(arg int) error {
 	return nil
 }
 
-func errorTest() {
-	for _, i := range []int{7, 42} {
-		if r, e := errorIfFortyTwo(i); e != nil {
-			fmt.Println("f failed:", e)
-		} else {
-			fmt.Println("f worked:", r)
-		}
-	}
+type argError struct {
+	arg     int
+	message string
+}
 
-	for i := range 5 {
-		if err := makeTea(i); err != nil {
-			if errors.Is(err, ErrOutOfTea) {
-				fmt.Println("out of tea:", err)
-			} else if errors.Is(err, ErrPower) {
-				fmt.Println("power error:", err)
-			} else {
-				fmt.Println("some other error:", err)
-			}
-			continue
-		}
-		fmt.Println("tea is served")
+func (e *argError) Error() string {
+	return fmt.Sprintf("%d - %s", e.arg, e.message)
+}
+
+func f(arg int) (int, error) {
+	if arg == 42 {
+		return -1, &argError{arg, "can't work with it"}
+	}
+	return arg, nil
+}
+
+func errorTest() {
+	// for _, i := range []int{7, 42} {
+	// 	if r, e := errorIfFortyTwo(i); e != nil {
+	// 		fmt.Println("f failed:", e)
+	// 	} else {
+	// 		fmt.Println("f worked:", r)
+	// 	}
+	// }
+
+	// for i := range 5 {
+	// 	if err := makeTea(i); err != nil {
+	// 		if errors.Is(err, ErrOutOfTea) {
+	// 			fmt.Println("out of tea:", err)
+	// 		} else if errors.Is(err, ErrPower) {
+	// 			fmt.Println("power error:", err)
+	// 		} else {
+	// 			fmt.Println("some other error:", err)
+	// 		}
+	// 		continue
+	// 	}
+	// 	fmt.Println("tea is served")
+	// }
+
+	_, err := f(42)
+	var ae *argError
+	if errors.As(err, &ae) {
+		fmt.Println(ae.arg)
+		fmt.Println(ae.message)
+	} else {
+		fmt.Println("err doesn't match argError")
 	}
 }

@@ -19,5 +19,6 @@ func main() {
 	// embedTest()
 	// genericTest()
 	// iterTest()
-	errorTest()
+	// errorTest()
+	goroutineTest()
 }
