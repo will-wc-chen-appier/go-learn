@@ -23,5 +23,6 @@ func main() {
 	// goroutineTest()
 	// channelTest()
 	// bufferTest()
-	directionTest()
+	// directionTest()
+	selectTest()
 }
