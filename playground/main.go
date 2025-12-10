@@ -20,5 +20,6 @@ func main() {
 	// genericTest()
 	// iterTest()
 	// errorTest()
-	goroutineTest()
+	// goroutineTest()
+	channelTest()
 }
