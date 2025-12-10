@@ -21,5 +21,6 @@ func main() {
 	// iterTest()
 	// errorTest()
 	// goroutineTest()
-	channelTest()
+	// channelTest()
+	bufferTest()
 }
