@@ -29,5 +29,6 @@ func main() {
 	// nonBlockingTest()
 	// closeTest()
 	// rangeOverTest()
-	timerTest()
+	// timerTest()
+	tickerTest()
 }
