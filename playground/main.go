@@ -30,5 +30,6 @@ func main() {
 	// closeTest()
 	// rangeOverTest()
 	// timerTest()
-	tickerTest()
+	// tickerTest()
+	workerTest()
 }
