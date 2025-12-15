@@ -24,5 +24,6 @@ func main() {
 	// channelTest()
 	// bufferTest()
 	// directionTest()
-	selectTest()
+	// selectTest()
+	timeoutTest()
 }
