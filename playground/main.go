@@ -31,5 +31,6 @@ func main() {
 	// rangeOverTest()
 	// timerTest()
 	// tickerTest()
-	workerTest()
+	// workerTest()
+	waitGroupTest()
 }
