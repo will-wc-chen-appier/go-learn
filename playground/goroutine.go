@@ -141,3 +141,32 @@ func nonBlockingTest() {
 		fmt.Println("no activity")
 	}
 }
+
+func closeTest() {
+	//create a goroutine that waits for jobs to be sent over thru queue
+	jobs := make(chan int, 5)
+	done := make(chan string)
+
+	go func() {
+		for {
+			j, more := <-jobs
+			if more {
+				fmt.Println("received job", j)
+			} else {
+				fmt.Println("received all jobs")
+				done <- "done"
+			}
+		}
+	}()
+
+	for j := 0; j < 3; j++ {
+		jobs <- j
+		fmt.Println("sent job", j)
+	}
+	close(jobs)
+
+	<-done //for synchronization
+
+	_, ok := <-jobs
+	fmt.Println("received more jobs:", ok)
+}

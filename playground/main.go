@@ -26,5 +26,6 @@ func main() {
 	// directionTest()
 	// selectTest()
 	// timeoutTest()
-	nonBlockingTest()
+	// nonBlockingTest()
+	closeTest()
 }
