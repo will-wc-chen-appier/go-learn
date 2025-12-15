@@ -27,5 +27,6 @@ func main() {
 	// selectTest()
 	// timeoutTest()
 	// nonBlockingTest()
-	closeTest()
+	// closeTest()
+	rangeOverTest()
 }

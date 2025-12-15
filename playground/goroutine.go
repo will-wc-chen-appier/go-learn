@@ -170,3 +170,14 @@ func closeTest() {
 	_, ok := <-jobs
 	fmt.Println("received more jobs:", ok)
 }
+
+func rangeOverTest() {
+	queue := make(chan string, 2)
+	queue <- "one"
+	queue <- "two"
+	close(queue)
+
+	for elem := range queue {
+		fmt.Println(elem)
+	}
+}
