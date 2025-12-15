@@ -181,3 +181,24 @@ func rangeOverTest() {
 		fmt.Println(elem)
 	}
 }
+
+func timerTest() {
+	timer := time.NewTimer(time.Second)
+
+	go func() {
+		<-timer.C
+		fmt.Println("message received")
+	}()
+
+	stop := timer.Stop()
+	if stop {
+		fmt.Println("timer stopped")
+	}
+
+	// reset := timer.Reset(time.Second)
+	// if reset {
+	// 	fmt.Println("timer reset")
+	// }
+
+	time.Sleep(2 * time.Second)
+}
