@@ -110,3 +110,34 @@ func timeoutTest() {
 		fmt.Println("timeout")
 	}
 }
+
+func nonBlockingTest() {
+	messages := make(chan string, 1)
+	signals := make(chan string, 1)
+
+	select {
+	case message := <-messages:
+		fmt.Println("received message:", message)
+	default:
+		fmt.Println("no message received")
+	}
+
+	msg := "hi"
+	select {
+	case messages <- msg:
+		fmt.Println("message sent: ", msg)
+	default:
+		fmt.Println("no message sent")
+	}
+
+	signals <- "hehe"
+
+	select {
+	case msg := <-messages:
+		fmt.Println("received message:", msg)
+	case sig := <-signals:
+		fmt.Println("received signal:", sig)
+	default:
+		fmt.Println("no activity")
+	}
+}
