@@ -33,5 +33,6 @@ func main() {
 	// tickerTest()
 	// workerTest()
 	// waitGroupTest()
-	steadyTest()
+	// steadyTest()
+	burstTest()
 }
