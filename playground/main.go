@@ -34,5 +34,6 @@ func main() {
 	// workerTest()
 	// waitGroupTest()
 	// steadyTest()
-	burstTest()
+	// burstTest()
+	atomicCounterTest()
 }
