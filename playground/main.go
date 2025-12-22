@@ -35,5 +35,6 @@ func main() {
 	// waitGroupTest()
 	// steadyTest()
 	// burstTest()
-	atomicCounterTest()
+	// atomicCounterTest()
+	mutexTest()
 }
