@@ -36,5 +36,6 @@ func main() {
 	// steadyTest()
 	// burstTest()
 	// atomicCounterTest()
-	mutexTest()
+	// mutexTest()
+	statefulGoroutineTest()
 }

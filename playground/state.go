@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"sync"
 	"sync/atomic"
+	"time"
 )
 
 // create 50 goroutine, each adding 1000 times to ops
@@ -66,4 +68,79 @@ func mutexTest() {
 
 	wg.Wait()
 	fmt.Println(counter.counters)
+}
+
+// stateful goroutines: simulate a scenario where we use goroutine channels as locks
+// setup scene: 1. Many concurrent readers 2. Some concurrent writers 3. Shared state
+type readOp struct {
+	key  int
+	resp chan int
+}
+
+type writeOp struct {
+	key  int
+	val  int
+	resp chan bool
+}
+
+func statefulGoroutineTest() {
+	reads := make(chan readOp)
+	writes := make(chan writeOp)
+
+	go func() {
+		state := make(map[int]int)
+		for {
+			select {
+			// when reads and writes both have elements, go runtime chooses one randomly
+			case read := <-reads:
+				read.resp <- state[read.key]
+			case write := <-writes:
+				state[write.key] = write.val
+				write.resp <- true
+			}
+		}
+	}()
+
+	var readCount uint64
+	var writeCount uint64
+
+	// 100 goroutines to repeatedly issue read requests
+	for range 100 {
+		go func() {
+			for {
+				read := readOp{
+					key:  rand.Intn(10),
+					resp: make(chan int),
+				}
+				reads <- read
+				<-read.resp
+				atomic.AddUint64(&readCount, 1)
+				time.Sleep(time.Millisecond)
+			}
+		}()
+	}
+
+	// 10 goroutines to repeatedly issue write requests
+	for range 10 {
+		go func() {
+			for {
+				write := writeOp{
+					key:  rand.Intn(10),
+					val:  rand.Intn(100),
+					resp: make(chan bool),
+				}
+				writes <- write
+				<-write.resp
+				atomic.AddUint64(&writeCount, 1)
+				time.Sleep(time.Millisecond)
+			}
+		}()
+	}
+
+	time.Sleep(time.Second)
+
+	readOpsFinal := atomic.LoadUint64(&readCount)
+	fmt.Println("readOps:", readOpsFinal)
+	writeOpsFinal := atomic.LoadUint64(&writeCount)
+	fmt.Println("writeOps:", writeOpsFinal)
 }
