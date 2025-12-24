@@ -36,4 +36,14 @@ func sortTest() {
 		return cmp.Compare(a.age, b.age)
 	})
 	fmt.Println("people sorted by age:", people)
+
+	people2 := []*Person{
+		{name: "Jax", age: 37},
+		{name: "TJ", age: 25},
+		{name: "Alex", age: 72},
+	}
+	slices.SortFunc(people2, func(a, b *Person) int {
+		return cmp.Compare(a.age, b.age)
+	})
+	fmt.Println("people2 sorted by age:", people2)
 }
