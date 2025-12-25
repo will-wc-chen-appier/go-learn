@@ -38,5 +38,6 @@ func main() {
 	// atomicCounterTest()
 	// mutexTest()
 	// statefulGoroutineTest()
-	sortTest()
+	// sortTest()
+	panicTest()
 }
