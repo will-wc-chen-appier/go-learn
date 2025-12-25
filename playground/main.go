@@ -39,5 +39,6 @@ func main() {
 	// mutexTest()
 	// statefulGoroutineTest()
 	// sortTest()
-	panicTest()
+	// panicTest()
+	deferTest()
 }

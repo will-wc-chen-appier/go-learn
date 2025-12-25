@@ -1,0 +1,36 @@
+package main
+
+import (
+	"fmt"
+	"os"
+	"path/filepath"
+)
+
+func deferTest() {
+	path := filepath.Join(os.TempDir(), "file")
+	file := createFile(path)
+	defer closeFile(file)
+	writeFile(file)
+}
+
+func createFile(path string) *os.File {
+	fmt.Println("Creating")
+	file, err := os.Create(path)
+	if err != nil {
+		panic(err)
+	}
+	return file
+}
+
+func writeFile(file *os.File) {
+	fmt.Println("Writing")
+	fmt.Fprintln(file, "data")
+}
+
+func closeFile(file *os.File) {
+	fmt.Println("Closing")
+	err := file.Close()
+	if err != nil {
+		panic(err)
+	}
+}
