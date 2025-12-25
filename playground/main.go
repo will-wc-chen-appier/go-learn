@@ -42,6 +42,6 @@ func main() {
 	// panicTest()
 	// deferTest()
 	// deferTestBad()
-
-	panicDemo()
+	// panicDemo()
+	recoverDemo()
 }
