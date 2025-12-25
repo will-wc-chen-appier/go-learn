@@ -40,5 +40,8 @@ func main() {
 	// statefulGoroutineTest()
 	// sortTest()
 	// panicTest()
-	deferTest()
+	// deferTest()
+	// deferTestBad()
+
+	panicDemo()
 }
