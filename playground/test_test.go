@@ -41,3 +41,9 @@ func TestIntMinTableDriven(t *testing.T) {
 		})
 	}
 }
+
+func BenchmarkIntMin(b *testing.B) {
+	for b.Loop() {
+		IntMin(1, 2)
+	}
+}
