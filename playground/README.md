@@ -75,7 +75,7 @@ Source: https://gobyexample.com/
 - [ ] Directories
 - [ ] Temporary Files and Directories
 - [ ] Embed Directive
-- [ ] Testing and Benchmarking
+- [x] Testing and Benchmarking
 - [ ] Command-Line Arguments
 - [ ] Command-Line Flags
 - [ ] Command-Line Subcommands
