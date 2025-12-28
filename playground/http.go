@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"net/http"
+	"time"
 )
 
 func requestTest() {
@@ -40,5 +41,24 @@ func headersHandler(w http.ResponseWriter, req *http.Request) {
 func serverTest() {
 	http.HandleFunc("/headers", headersHandler)
 	http.HandleFunc("/hello", helloHandler)
+	http.ListenAndServe(":8090", nil)
+}
+
+func exampleHandler(w http.ResponseWriter, req *http.Request) {
+	ctx := req.Context()
+	fmt.Println("server: example server started")
+	defer fmt.Println("server: example server ended")
+
+	select {
+	case <-time.After(10 * time.Second):
+		fmt.Fprintf(w, "hello\n")
+	case <-ctx.Done():
+		err := ctx.Err()
+		fmt.Println("server: ", err)
+	}
+}
+
+func contextTest() {
+	http.HandleFunc("/example", exampleHandler)
 	http.ListenAndServe(":8090", nil)
 }

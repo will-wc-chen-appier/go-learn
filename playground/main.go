@@ -45,5 +45,6 @@ func main() {
 	// panicDemo()
 	// recoverDemo()
 	// requestTest()
-	serverTest()
+	// serverTest()
+	contextTest()
 }
