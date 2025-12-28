@@ -81,8 +81,8 @@ Source: https://gobyexample.com/
 - [ ] Command-Line Subcommands
 - [ ] Environment Variables
 - [ ] Logging
-- [ ] HTTP Client
-- [ ] HTTP Server
+- [x] HTTP Client
+- [x] HTTP Server
 - [ ] TCP Server
 - [ ] Context
 - [ ] Spawning Processes
