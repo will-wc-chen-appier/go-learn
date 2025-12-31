@@ -46,6 +46,7 @@ func serverTest() {
 
 func exampleHandler(w http.ResponseWriter, req *http.Request) {
 	ctx := req.Context()
+	fmt.Print(ctx)
 	fmt.Println("server: example server started")
 	defer fmt.Println("server: example server ended")
 
