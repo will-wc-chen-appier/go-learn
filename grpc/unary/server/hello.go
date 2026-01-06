@@ -6,7 +6,7 @@ import (
 	pb "unary/proto"
 )
 
-func (*Server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloResponse, error) {
+func (*HelloServer) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloResponse, error) {
 	log.Printf("Greet was invoked with %v\n", in)
 	return &pb.HelloResponse{Message: "Hello " + in.Name}, nil
 }

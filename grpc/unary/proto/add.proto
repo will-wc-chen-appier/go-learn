@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package add;
+
+option go_package = "unary/proto/add;add";
+
+message AddRequest {
+    double a = 1;
+    double b = 2;
+}
+
+
+message AddResponse {
+    double result = 1;
+}
+
+
+service AddService {
+    rpc Add (AddRequest) returns (AddResponse);
+}
+
+
