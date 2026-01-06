@@ -3,10 +3,10 @@ package main
 import (
 	"context"
 	"log"
-	pb "unary/proto"
+	helloPb "unary/proto/hello"
 )
 
-func (*HelloServer) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloResponse, error) {
+func (*HelloServer) SayHello(ctx context.Context, in *helloPb.HelloRequest) (*helloPb.HelloResponse, error) {
 	log.Printf("Greet was invoked with %v\n", in)
-	return &pb.HelloResponse{Message: "Hello " + in.Name}, nil
+	return &helloPb.HelloResponse{Message: "Hello " + in.Name}, nil
 }

@@ -3,12 +3,12 @@ package main
 import (
 	"context"
 	"log"
-	pb "unary/proto"
+	helloPb "unary/proto/hello"
 )
 
-func sayHello(client pb.HelloServiceClient) {
+func sayHello(client helloPb.HelloServiceClient) {
 	log.Println("sayHello is invoked")
-	resp, err := client.SayHello(context.Background(), &pb.HelloRequest{
+	resp, err := client.SayHello(context.Background(), &helloPb.HelloRequest{
 		Name: "Will",
 	})
 

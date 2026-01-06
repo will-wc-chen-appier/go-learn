@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package hello;
 
-option go_package = "unary/proto;proto";
+option go_package = "unary/proto/hello;proto";
 
 message HelloRequest {
     string name = 1;

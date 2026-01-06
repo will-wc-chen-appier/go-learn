@@ -4,8 +4,8 @@ import (
 	"log"
 	"net"
 
-	pb "unary/proto"
 	addPb "unary/proto/add"
+	helloPb "unary/proto/hello"
 
 	"google.golang.org/grpc"
 )
@@ -13,7 +13,7 @@ import (
 var addr string = "0.0.0.0:50051"
 
 type HelloServer struct {
-	pb.HelloServiceServer
+	helloPb.HelloServiceServer
 }
 
 type AddServer struct {
@@ -30,7 +30,7 @@ func main() {
 	log.Printf("Listening on: %s\n", addr)
 
 	s := grpc.NewServer()
-	pb.RegisterHelloServiceServer(s, &HelloServer{})
+	helloPb.RegisterHelloServiceServer(s, &HelloServer{})
 	addPb.RegisterAddServiceServer(s, &AddServer{})
 
 	if err = s.Serve(lis); err != nil {

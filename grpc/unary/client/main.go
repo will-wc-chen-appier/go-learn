@@ -6,8 +6,8 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	pb "unary/proto"
 	addPb "unary/proto/add"
+	helloPb "unary/proto/hello"
 )
 
 var addr string = "localhost:50051"
@@ -20,7 +20,7 @@ func main() {
 	}
 	defer conn.Close()
 
-	client := pb.NewHelloServiceClient(conn)
+	client := helloPb.NewHelloServiceClient(conn)
 	sayHello(client)
 	addClient := addPb.NewAddServiceClient(conn)
 	addTwoNumbers(addClient, 1, 2)
