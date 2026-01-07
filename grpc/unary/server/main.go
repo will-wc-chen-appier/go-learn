@@ -11,6 +11,7 @@ import (
 	helloPb "unary/proto/hello"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/keepalive"
 	"google.golang.org/grpc/reflection"
 )
 
@@ -23,7 +24,13 @@ type AddServer struct {
 }
 
 func main() {
-	server := grpc.NewServer()
+	server := grpc.NewServer(
+		grpc.KeepaliveParams(keepalive.ServerParameters{
+			MaxConnectionAge: 100,
+		}),
+		grpc.ReadBufferSize(128*1024),
+		grpc.WriteBufferSize(128*1024),
+	)
 	helloPb.RegisterHelloServiceServer(server, &HelloServer{})
 	addPb.RegisterAddServiceServer(server, &AddServer{})
 	defer server.GracefulStop()
