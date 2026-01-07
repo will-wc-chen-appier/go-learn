@@ -3,6 +3,9 @@ package main
 import (
 	"log"
 	"net"
+	"os"
+	"os/signal"
+	"syscall"
 
 	addPb "unary/proto/add"
 	helloPb "unary/proto/hello"
@@ -10,8 +13,6 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
-
-var addr string = "0.0.0.0:50051"
 
 type HelloServer struct {
 	helloPb.HelloServiceServer
@@ -22,21 +23,28 @@ type AddServer struct {
 }
 
 func main() {
-	lis, err := net.Listen("tcp", addr)
+	server := grpc.NewServer()
+	helloPb.RegisterHelloServiceServer(server, &HelloServer{})
+	addPb.RegisterAddServiceServer(server, &AddServer{})
+	defer server.GracefulStop()
 
-	if err != nil {
-		log.Fatalf("Failed to listen on: %v\n", err)
-	}
+	reflection.Register(server)
 
-	log.Printf("Listening on: %s\n", addr)
+	go func() {
+		var addr string = "0.0.0.0:50051"
+		lis, err := net.Listen("tcp", addr)
+		if err != nil {
+			log.Fatalf("Failed to listen on: %v\n", err)
+		}
+		if err = server.Serve(lis); err != nil {
+			log.Fatalf("Failed to serve gRPC server: %v\n", err)
+		}
+		log.Printf("gRPC server listening on: %v\n", addr)
+	}()
 
-	s := grpc.NewServer()
-	helloPb.RegisterHelloServiceServer(s, &HelloServer{})
-	addPb.RegisterAddServiceServer(s, &AddServer{})
-
-	reflection.Register(s)
-
-	if err = s.Serve(lis); err != nil {
-		log.Fatalf("Failed to serve gRPC server: %v\n", err)
-	}
+	// graceful shutdown
+	sig := make(chan os.Signal, 1)
+	signal.Notify(sig, os.Interrupt, syscall.SIGTERM)
+	<-sig
+	log.Println("shutting down gRPC server...")
 }
